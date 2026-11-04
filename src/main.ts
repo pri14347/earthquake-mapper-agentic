@@ -40,7 +40,7 @@ mapElement.map = new Map({
     : "dark-gray-vector",
 });
 basemapLabel.textContent = apiKey
-  ? "ArcGIS Location Platform basemap"
+  ? "ArcGIS basemap · API key configured"
   : "Public ArcGIS basemap · no key configured";
 
 function showError(title: string, message: string, error: unknown): void {
