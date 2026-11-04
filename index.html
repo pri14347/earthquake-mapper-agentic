@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" class="calcite-mode-dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#151b20" />
+    <meta name="description" content="Explore the past seven days of earthquakes worldwide with ArcGIS and USGS." />
+    <title>Seismic | Earthquake Explorer</title>
+    <link rel="icon" href="data:;base64,=" />
+  </head>
+  <body>
+    <a class="skip-link" href="#map">Skip to map</a>
+    <calcite-shell>
+      <calcite-navigation slot="header">
+        <calcite-navigation-logo
+          slot="logo"
+          heading="Seismic"
+          description="Earthquake explorer"
+          heading-level="1"
+          icon="globe"
+        ></calcite-navigation-logo>
+        <div slot="content-end" class="header-actions">
+          <calcite-chip scale="s" icon="clock">Past 7 days</calcite-chip>
+          <calcite-button appearance="outline" icon-start="refresh" scale="s" disabled>
+            Refresh
+          </calcite-button>
+        </div>
+      </calcite-navigation>
+      <main aria-label="Earthquake explorer">
+        <arcgis-map id="map" center="-115,25" zoom="2" aria-label="Worldwide earthquakes in the past seven days" tabindex="0">
+          <arcgis-popup slot="popup"></arcgis-popup>
+          <arcgis-zoom slot="top-right"></arcgis-zoom>
+          <arcgis-home slot="top-right"></arcgis-home>
+          <arcgis-locate slot="top-right"></arcgis-locate>
+          <arcgis-scale-bar slot="bottom-left" unit="metric"></arcgis-scale-bar>
+          <section class="map-guide" slot="top-left" aria-labelledby="guide-title">
+            <p class="eyebrow"><span class="status-dot"></span> A PLANET IN MOTION</p>
+            <h2 id="guide-title">Explore the<br />earth beneath us.</h2>
+            <p class="intro">Seven days of earthquakes, worldwide.<br />Select a circle to discover its story.</p>
+            <div class="legend" aria-label="Larger circles indicate higher earthquake magnitude">
+              <span class="legend-title">MAGNITUDE</span>
+              <div class="legend-symbols">
+                <span><i class="magnitude magnitude-small"></i>2</span>
+                <span><i class="magnitude magnitude-medium"></i>4</span>
+                <span><i class="magnitude magnitude-large"></i>6+</span>
+              </div>
+              <p>Circle size represents magnitude.</p>
+            </div>
+            <p class="hint">Use the location arrow to find yourself.<br />Your location is used only in this browser.</p>
+          </section>
+        </arcgis-map>
+        <div class="notice-container">
+          <calcite-notice kind="danger" icon closable>
+            <div slot="title" id="notice-title"></div>
+            <div slot="message" id="notice-message"></div>
+          </calcite-notice>
+        </div>
+      </main>
+      <footer slot="footer">
+        <div class="feed-info" role="status" aria-live="polite">
+          <span id="feed-status">Starting map…</span>
+          <time id="updated"></time>
+        </div>
+        <div class="source-info">
+          <span id="basemap-mode"></span>
+          <a href="https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php" target="_blank" rel="noopener noreferrer">USGS data ↗</a>
+        </div>
+      </footer>
+    </calcite-shell>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
